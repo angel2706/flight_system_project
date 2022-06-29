@@ -1,0 +1,9 @@
+{% extends "users/base.html" %}
+{% block content %}
+
+  <h1>Create New Flight</h1>
+
+  <a href="{% url 'create-nonstop' %}">Create a non-stop flight</a>
+  <a href="{% url 'create-multi' %}">Create a flight with a stop</a>
+
+{% endblock content %}

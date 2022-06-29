@@ -1,0 +1,151 @@
+html {
+    height: 100%;
+  }
+
+  body {
+    width: 100%;
+    margin: 0 auto;
+
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: whitesmoke;
+    overflow: auto;
+  }
+
+  header {
+    margin-top: 4rem;
+    height: 130px;
+  }
+
+  .contentContainer {
+    margin: 0 auto;
+    width: 85%;
+    max-width: 1450px;
+    height: 100%;
+    padding-bottom: 35px;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+  }
+
+  #nav-right>a,
+  #nav-left>a {
+    padding: 15px;
+    color: rgb(83, 83, 83);
+    font-size: larger;
+    text-decoration: none;
+  }
+
+  #nav-left>a {
+    padding-left: 0;
+  }
+
+  .footer>p {
+    height: 35px;
+    background-color: rgb(110, 110, 110);
+    color: rgb(173, 173, 173);
+    font-size: small;
+    text-align: center;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+
+  .searchForm {
+    padding: 3rem;
+    background-color: rgb(149, 187, 245);
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+
+  .searchForm>label {
+    margin-left: 3rem;
+    color: rgb(54, 54, 54);
+  }
+
+  .searchForm>button {
+    margin-left: 3rem;
+    width: 10%;
+    height: 35px;
+    font-weight: bold;
+    border: none;
+    background-color: rgb(20, 98, 201);
+    color: aliceblue;
+    border-radius: 15px;
+  }
+
+  .searchForm>input {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    height: 25px;
+    width: 20%;
+  } 
+
+  #results {
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .result {
+    width: 50%;
+    margin-bottom: 5rem;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+
+    padding: 2rem;
+    border: 1px solid grey;
+    border-radius: 15px;
+  }
+
+  .resultDepart, .resultArrival {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .resultDetails {
+    margin-bottom: 2rem;
+  }
+
+  .bookResult>button {
+    width: 10%;
+    height: 35px;
+    font-weight: bold;
+    border: none;
+    background-color: rgb(20, 98, 201);
+    color: aliceblue;
+    border-radius: 15px;
+  }
+
+  #error {
+    color: brown;
+    font-size: large;
+    font-style: italic;
+    margin: 1.5rem;
+    margin-left: 2rem;
+  }
+
+  .pageContain {
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  .pageLink {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: larger;
+    color: rgb(20, 98, 201);
+    text-decoration: none;
+  }

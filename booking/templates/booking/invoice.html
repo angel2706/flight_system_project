@@ -1,0 +1,45 @@
+{% extends "booking/base.html" %}
+{% block content %}
+
+    <h1>Invoice</h1>
+
+    <div id="topInfo">
+        <p>Booking Reference: {{ booking.reference_number }}</p>
+        <p>Invoice Date: {{ booking.booked_time }}</p>
+    </div>
+
+    <div>    
+        <p>Departing from: {{ booking.flight_fk.depart_fk.airport_fk.city_fk.city_name }}, {{ booking.flight_fk.depart_fk.airport_fk.city_fk.country }}</p>
+        <p>Departure: {{ booking.flight_fk.depart_fk.datetime }} {{ booking.flight_fk.depart_fk.airport_fk.city_fk.timezone_fk.timezone_code }}</p><br>
+
+        <p>Flying to: {{ booking.flight_fk.arrival_fk.airport_fk.city_fk.city_name }}, {{ booking.flight_fk.arrival_fk.airport_fk.city_fk.country }}</p> 
+        <p>Arriving at: {{ booking.flight_fk.arrival_fk.datetime }} {{ booking.flight_fk.arrival_fk.airport_fk.city_fk.timezone_fk.timezone_code }}</p><br>
+
+        
+        <p>Flight Duration: {{ booking.flight_fk.flight_duration }} mins</p><br>
+
+        {% if booking.flight_fk.num_stops > 0 %}
+        <p>{{ booking.flight_fk.num_stops }} Stop</p>
+        <p>
+            {% for stop in booking.flight_fk.stops.all %}
+                {{ stop.airport_fk.city_fk.city_name }}  {{ stop.stop_duration }} mins
+            {% endfor %}
+        </p><br>
+        {% endif %}
+
+        <p>Cost: ${{ booking.flight_fk.price }}</p>
+    </div>
+
+    <div id="terms">
+        <p>Terms and conditions: This is not a real flight</p>
+    </div>
+
+    <form method="POST" action="{% url 'view-booking-invoice' %}" id="cancelBooking">
+        {% csrf_token %}
+        <input type="hidden" value="{{ booking.reference_number }}" name="ref_num" />
+        <button type="submit">Cancel Booking</button>
+    </form>
+
+    <a href="{% url 'view-bookings' %}" id="viewBookings">View all bookings</a>
+    
+{% endblock content %}

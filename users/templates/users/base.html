@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title>Book a Flight - Dairy Flat Airport</title>
+  {% endif %}
+
+
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      width: 100%;
+      margin: 0 auto;
+
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: whitesmoke;
+    }
+
+    header {
+      margin-top: 4rem;
+      height: 130px;
+    }
+
+    .contentContainer {
+      margin: 0 auto;
+      width: 85%;
+      max-width: 1450px;
+      height: 100%;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    #nav-right>a,
+    #nav-left>a {
+      padding: 15px;
+      color: rgb(83, 83, 83);
+      font-size: larger;
+      text-decoration: none;
+    }
+
+    #nav-left>a {
+      padding-left: 0;
+    }
+
+    #loggedAs {
+      font-size: larger;
+      color: rgb(138, 138, 138);
+    }
+
+    #log {
+      padding: 10px 30px;
+      background-color: rgb(158, 158, 158);
+      width: 10%;
+      border-radius: 15px;
+      text-align: center;
+    }
+
+    #log>a {
+      text-decoration: none;
+      color: white;
+    }
+
+    #again {
+      color: rgb(138, 138, 138);
+      margin-left: 0.5rem;
+    }
+
+    .submitLog>button {
+      width: 10%;
+      height: 35px;
+      font-weight: bold;
+      border: none;
+      background-color: rgb(20, 98, 201);
+      color: aliceblue;
+      border-radius: 15px;
+    }
+
+    #logForm>ul>li, .helptext {
+      font-style: italic;
+      color: rgb(141, 141, 141);
+    }
+
+    #logForm>p>label {
+      margin-right: 1.5rem;
+      display:inline-block;
+      width: 120px;
+    }
+
+    #logForm>p>input {
+      margin-right: 2rem;
+    }
+
+
+
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="contentContainer">
+
+    <header>
+      <nav>
+        <div id="nav-left">
+          <a href="/">Search Flights</a>
+        </div>
+
+        <div id="nav-right">
+          {% if user.is_authenticated %}
+          <a href="{% url 'view-bookings' %}">Bookings</a>
+          <a href="{% url 'profile' %}">Profile</a>
+          <a href="{% url 'logout' %}">Log out</a>
+          {% else %}
+          <a href="{% url 'login' %}">Log in</a>
+          <a href="{% url 'register' %}">Register</a>
+          {% endif %}
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div>
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+
+  </div>
+
+  <!-- <div class="footer">
+    <p>Flight booking app - Angel Porteous 2022 </p>
+  </div> -->
+
+</body>
+
+</html>

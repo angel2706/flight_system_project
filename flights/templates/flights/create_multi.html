@@ -1,0 +1,54 @@
+{% extends "users/base.html" %}
+{% block content %}
+
+  <h1>Create New Flight</h1>
+  <form method="POST" action="{% url 'create-multi' %}">
+    {% csrf_token %}
+
+    Flight Details:<br>
+
+    <label for="first_depart_date">Departure</label><br>
+    <input type="text" name="first_depart_place" placeholder="Departure Airport" required ><br>
+    <input type="date" name="first_depart_date" required>
+    <input type="time" name="first_depart_time" min="05:00" max="23:59" required><br><br>
+    
+    <label for="second_arrive_date">Arrival</label><br>
+    <input type="text" name="second_arrive_place" placeholder="Arrival Airport" required><br>
+    <input type="date" name="second_arrive_date" required>
+    <input type="time" name="second_arrive_time" min="05:00" max="23:59" required><br><br><br>
+
+    <input type="text" name="flight_price" placeholder="Price" required>
+    <input type="text" name="flight_num" placeholder="Flight Number" required>
+    <input type="text" name="plane" placeholder="Plane" required><br><br>
+
+    Stop Details:<br>
+    <label for="stops">Stops</label>
+    <input type="number" name="stops" min="1" max="1" value="1" required><br><br>
+    <input type="text" name="stop_dest"  placeholder="Airport Stop" required><br><br>
+
+    Stop at: 
+    <input type="date" name="stop_date"  placeholder="Stop Date" required>
+    <input type="time" name="stop_time"  placeholder="Stop Time" required><br><br>
+
+    Leave at: 
+    <input type="date" name="leave_date" placeholder="Leave Date" required> 
+    <input type="time" name="leave_time" placeholder="Leave Time" required><br><br>
+  
+    <button type="submit">Create Flight</button> 
+
+  </form>
+
+  <!-- 
+    <label for="first_arrive_date">Arrival</label><br>
+    <input type="text" name="first_arrive_place" placeholder="Arrival Airport" required><br>
+    <input type="date" name="first_arrive_date" required>
+    <input type="time" name="first_arrive_time" min="05:00" max="23:59" required><br><br><br>
+
+    <label for="second_depart_date">Departure</label><br>
+    <input type="text" name="second_depart_place" placeholder="Departure Airport" required ><br>
+    <input type="date" name="second_depart_date" required>
+    <input type="time" name="second_depart_time" min="05:00" max="23:59" required><br><br>
+  -->
+
+
+{% endblock content %}

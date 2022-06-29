@@ -1,0 +1,40 @@
+{% extends "booking/base.html" %}
+{% block content %}
+
+<h1>Book this flight?</h1>
+
+
+<div>
+    <p>Departing from: {{ flight.depart_fk.airport_fk.city_fk.city_name }}, {{flight.depart_fk.airport_fk.city_fk.country }}</p>
+    <p>Departure: {{ flight.depart_fk.datetime }} {{ flight.depart_fk.airport_fk.city_fk.timezone_fk.timezone_code }}
+    </p><br>
+
+    <p>Flying to: {{ flight.arrival_fk.airport_fk.city_fk.city_name }}, {{ flight.arrival_fk.airport_fk.city_fk.country}}</p>
+    <p>Arriving at: {{ flight.arrival_fk.datetime }} {{ flight.arrival_fk.airport_fk.city_fk.timezone_fk.timezone_code}}</p><br>
+
+
+    <p>Flight Duration: {{ flight.flight_duration }} mins</p><br>
+
+    {% if flight.num_stops > 0 %}
+    <p>{{ flight.num_stops }} Stop</p>
+    <p>
+        {% for stop in flight.stops.all %}
+        {{ stop.airport_fk.city_fk.city_name }} {{ stop.stop_duration }} mins
+        {% endfor %}
+    </p><br>
+    {% endif %}
+
+    <p>Cost: ${{ flight.price }}</p>
+</div>
+
+<div id="terms">
+    <p>Terms and conditions: This is not a real flight</p>
+</div>
+
+<form method="POST" action="{% url 'book-flight' %}" id="confirmBooking">
+    {% csrf_token %}
+    <input type="hidden" value="{{ flight.id }}" name="flight_id" />
+    <button type="submit">Confirm</button>
+</form>
+
+{% endblock content %}

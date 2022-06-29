@@ -1,0 +1,96 @@
+{% extends "flights/base.html" %}
+{% block content %}
+
+<h3>Search again?</h3>
+
+<form class="searchForm" method="POST" action="{% url 'search' %}">
+  {% csrf_token %}
+  <input list="places" name="depart_place" placeholder="Flying From" required autofocus>
+  <input list="places" name="arrive_place" placeholder="Flying To" required>
+
+  <datalist id="places">
+    {% for opt in places %}
+    <option value="{{ opt.city_name }}, {{ opt.country }}">
+      {% endfor %}
+  </datalist>
+
+  <label for="depart_time">Leave on: </label>
+  <input type="date" name="depart_time" required>
+  <button type="submit">Search Flights</button>
+</form>
+
+<h1>Flights Available</h1>
+
+<div id="results">
+  {% for flight in page_obj %}
+
+  {% if flight.capacity > 0 %}
+  <form method="POST" action="{% url 'results' %}" class="result">
+    {% csrf_token %}
+    <div>
+
+      <div class="resultTop">
+        <div class="resultDepart">
+          <p>From {{ flight.flight_fk.depart_fk.airport_fk.city_fk.city_name }}</p>
+          <p>{{ flight.flight_fk.depart_fk.datetime }} {{flight.flight_fk.depart_fk.airport_fk.city_fk.timezone_fk.timezone_code}}</p>
+        </div>
+  
+        <div class="resultArrival">
+          <p>To {{ flight.flight_fk.arrival_fk.airport_fk.city_fk.city_name }}</p>
+          <p>{{ flight.flight_fk.arrival_fk.datetime }} {{flight.flight_fk.arrival_fk.airport_fk.city_fk.timezone_fk.timezone_code}}</p>
+        </div>
+      </div>
+
+      <div>
+        <div class="resultDetails">
+          <p>{{ flight.flight_fk.flight_duration }} mins</p>
+          <p>${{ flight.flight_fk.price }} (NZD)</p>
+          <p>Seats left: {{ flight.capacity }}</p>
+        </div>
+  
+        {% if flight.flight_fk.num_stops > 0 %}
+        <div class="resultStops">
+          <p>{{ flight.flight_fk.num_stops }} Stop</p>
+          <p>
+            {% for stop in flight.flight_fk.stops.all %}
+            {{ stop.airport_fk.city_fk.city_name }} {{ stop.stop_duration }} mins
+            {% endfor %}
+          </p>
+        </div>
+        {% endif %}
+      </div>  
+
+      <div class="bookResult">
+        <input type="hidden" value="{{ flight.id }}" name="flight_id" />
+        <button type="submit">Book</button>
+      </div>
+    </div>
+  </form>
+  {% endif %}
+
+  {% empty %}
+  <p>Sorry, No flights available...</p>
+
+  {% endfor %}
+</div>
+
+<div class="pageContain">
+  {% if page_obj.has_previous %}
+    <p class="pageItem">
+      <a href="?page={{ page_obj.previous_page_number }}" class="pageLink">
+        ← prev
+      </a>
+    </p>
+  {% endif %}
+
+  {% if page_obj.has_next %}
+    <p class="pageItem">
+      <a href="?page={{ page_obj.next_page_number }}" class="pageLink">
+        next →
+      </a>
+    </p>
+  {% endif %}
+
+</div>
+
+{% endblock content %}

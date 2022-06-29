@@ -1,0 +1,34 @@
+{% extends "booking/base.html" %}
+{% block content %}
+
+<h1>{{ user.username }}'s Bookings</h1>
+
+<div>
+    {% for booking in booking_info %}
+    <form method="POST" action="{% url 'view-bookings' %}" class="bookedResult">
+        {% csrf_token %}
+        <p>Booking Reference: {{ booking.reference_number }}</p>
+        <p>
+            {{ booking.flight_fk.depart_fk.airport_fk.city_fk.city_name }}, {{booking.flight_fk.depart_fk.airport_fk.city_fk.country }}
+            to
+            {{ booking.flight_fk.arrival_fk.airport_fk.city_fk.city_name }}, {{booking.flight_fk.arrival_fk.airport_fk.city_fk.country }}
+        </p>
+        <p>
+            Departing : {{ booking.flight_fk.depart_fk.datetime }} {{booking.flight_fk.depart_fk.airport_fk.city_fk.timezone_fk.timezone_code }}
+        </p>
+        <p>
+            Cost: ${{ booking.flight_fk.price }}
+        </p>
+
+        <input type="hidden" value="{{ booking.reference_number }}" name="ref_num" />
+        <button type="submit">View Invoice</button>
+    </form>
+
+    {% empty %}
+    <p>No bookings yet</p>
+    {% endfor %}
+</div>
+
+
+
+{% endblock content %}

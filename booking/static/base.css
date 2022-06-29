@@ -1,0 +1,31 @@
+body {    
+    width : 100%;
+    margin: 0 auto;
+ }
+
+ header {
+    height: 130px;
+ }
+
+  a {
+    color: rgb(52, 54, 163);
+    font-size: larger;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  #nav-right > a, #nav-left > a {
+    padding: 15px;
+    color: rgb(52, 54, 163);
+    font-size: larger;
+  }
+
+  #nav-left > a {
+    padding-left: 0;
+  }

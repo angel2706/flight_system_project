@@ -1,0 +1,14 @@
+{% extends "booking/base.html" %}
+{% block content %}
+
+    <h1>Your booking has been cancelled</h1>
+
+    <div id="oldRef">
+        <p>Booking Reference: {{ ref_num }}</p>
+    </div>
+
+    <a href="{% url 'view-bookings' %}" id="viewBookings">View all bookings</a>
+
+
+
+{% endblock content %}

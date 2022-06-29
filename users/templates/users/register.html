@@ -1,0 +1,28 @@
+{% extends "users/base.html" %}
+{% block content %}
+
+  {% if messages %}
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">
+              {{ message }}
+          </div>
+          {% endfor %}
+      {% endif %}
+
+      <h1>Sign up</h1>
+
+      <form method="POST" id="logForm">
+
+        {% csrf_token %}
+        
+        {{ form.as_p }}
+
+        <div class="submitLog">
+            <button type="submit">Sign up</button>
+        </div>
+
+      </form><br><br>
+
+      <p id="again">Already have an account? </p>
+      <div  id="log"><a href="{% url 'login' %}">Login instead</a></div>
+  {% endblock content %}

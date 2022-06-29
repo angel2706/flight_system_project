@@ -1,0 +1,28 @@
+{% extends "flights/base.html" %}
+{% block content %}
+  <p style="color: rgb(94, 150, 223);font-size: larger;">Dairy Flat Airlines</p>
+  <h1>Find a Flight</h1>
+
+  {% if error %}
+  <p id="error">{{ error }}</p>
+  {% endif %}
+
+  <form class="searchForm" method="POST" action="{% url 'search' %}">
+    {% csrf_token %}
+    <input list="places" name="depart_place" placeholder="Flying From" required autofocus>
+    <input list="places" name="arrive_place" placeholder="Flying To" required>
+
+    <datalist id="places">
+      {% for opt in places %}
+        <option value="{{ opt.city_name }}, {{ opt.country }}">
+      {% endfor %}
+    </datalist>
+
+    <label for="depart_time">Leave on: </label>
+    <input type="date" name="depart_time" required>
+    <button type="submit">Search Flights</button> 
+  </form>
+
+
+{% endblock content %}
+

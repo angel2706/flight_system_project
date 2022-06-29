@@ -1,0 +1,35 @@
+{% extends "users/base.html" %}
+{% block content %}
+
+  <h1>Flight Created</h1>
+
+  <div>
+    <p>
+      <br><br>
+      Departing Airport: {{ first_depart_place }}<br>
+      Departing Time: {{ first_depart_time }}<br>
+      Departing Date: {{ first_depart_date }}<br>
+      <br><br>
+      Arriving Airport: {{ second_arrive_place }}<br>
+      Arriving Time: {{ second_arrive_time }}<br>
+      Arriving Date: {{ second_arrive_date }}<br>
+      <br><br>
+      Flight Price: {{ flight_price }}<br>
+      Flight Number: {{ flight_num }}<br>
+      Plane PK: {{ plane }}<br>
+      <!-- Flight Duration: {{ flight_duration }} -->       
+      <br><br>
+      Number of Stops: {{ stops }}<br><br>
+      Stopping at: {{ stop_dest }}<br>
+      Arriving at stop at: {{ stop_date }} {{ stop_time }}<br>
+      Leaving stop at: {{ leave_date }} {{ leave_time }}<br>
+
+      <!-- {{ stop_duration }}<br> -->      
+
+    </p>
+  </div>
+
+  <p>Further changes to this flight must be done via the admin portal</p>
+  <a href="{% url 'create' %}">Create another flight?</a>
+
+{% endblock content %}

@@ -1,0 +1,167 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  {% if title %}
+  <title>{{ title }}</title>
+  {% else %}
+  <title>Book a Flight - Dairy Flat Airport</title>
+  {% endif %}
+
+
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      width: 100%;
+      margin: 0 auto;
+
+      font-family: Arial, Helvetica, sans-serif;
+      background-color: whitesmoke;
+    }
+
+    header {
+      margin-top: 4rem;
+      height: 130px;
+    }
+
+    .contentContainer {
+      margin: 0 auto;
+      width: 85%;
+      max-width: 1450px;
+      height: 100%;
+    }
+
+    nav {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    #nav-right>a,
+    #nav-left>a {
+      padding: 15px;
+      color: rgb(83, 83, 83);
+      font-size: larger;
+      text-decoration: none;
+    }
+
+    #nav-left>a {
+      padding-left: 0;
+    }
+
+    .bookedResult {
+      width: 50%;
+      margin-bottom: 5rem;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      padding: 2rem;
+      border: 1px solid grey;
+      border-radius: 15px;
+    }
+
+    .bookedResult>button {
+      margin-top: 2rem;
+      width: 30%;
+      height: 35px;
+      font-weight: bold;
+      border: none;
+      background-color: rgb(95, 143, 204);
+      color: aliceblue;
+      border-radius: 15px;
+    }
+
+    #topInfo {
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+    }
+
+    #terms {
+      font-style: italic;
+      color: gray;      
+    }
+
+    #cancelBooking>button, #confirmBooking>button {
+      margin-top: 2rem;
+      margin-bottom: 3rem;
+      width: 15%;
+      height: 35px;
+      border: none;
+      background-color: rgb(140, 183, 240);
+      color: aliceblue;
+      border-radius: 15px;
+    }
+
+    #viewBookings {
+      width: 175px;
+      padding: 10px 45px;
+      height: 35px;
+      background-color: rgb(129, 129, 129);
+      color: rgb(240, 240, 240);
+      border-radius: 15px;
+      text-decoration: none;
+    }
+
+    #oldRef {
+      margin-bottom: 5rem;
+      margin-top: 2rem;
+      margin-left: 2rem;
+    }
+
+
+
+
+
+
+
+  </style>
+
+</head>
+
+<body>
+
+  <div class="contentContainer">
+
+    <header>
+      <nav>
+        <div id="nav-left">
+          <a href="/">Search Flights</a>
+        </div>
+
+        <div id="nav-right">
+          {% if user.is_authenticated %}
+          <a href="{% url 'view-bookings' %}">Bookings</a>
+          <a href="{% url 'profile' %}">Profile</a>
+          <a href="{% url 'logout' %}">Log out</a>
+          {% else %}
+          <a href="{% url 'login' %}">Log in</a>
+          <a href="{% url 'register' %}">Register</a>
+          {% endif %}
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <div>
+        {% block content %}{% endblock %}
+      </div>
+    </main>
+
+  </div>
+
+  <!-- <div class="footer">
+    <p>Flight booking app - Angel Porteous 2022 </p>
+  </div> -->
+
+</body>
+
+</html>
